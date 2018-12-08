@@ -1,12 +1,12 @@
 databaseChangeLog:
 - changeSet:
-    id: 1544286081237-1
+    id: 1544287319364-1
     author: vittorio (generated)
     changes:
     - createSequence:
         sequenceName: HIBERNATE_SEQUENCE
 - changeSet:
-    id: 1544286081237-2
+    id: 1544287319364-2
     author: vittorio (generated)
     changes:
     - createTable:
@@ -20,7 +20,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: ORDER
 - changeSet:
-    id: 1544286081237-3
+    id: 1544287319364-3
     author: vittorio (generated)
     changes:
     - createTable:
@@ -50,7 +50,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: ORDERLINE
 - changeSet:
-    id: 1544286081237-4
+    id: 1544287319364-4
     author: vittorio (generated)
     changes:
     - createTable:
@@ -78,7 +78,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: PRODUCT
 - changeSet:
-    id: 1544286081237-5
+    id: 1544287319364-5
     author: vittorio (generated)
     changes:
     - addUniqueConstraint:
@@ -86,7 +86,7 @@ databaseChangeLog:
         constraintName: UKQ1MAFXN973LDQ80M1IRP3MPVQ
         tableName: PRODUCT
 - changeSet:
-    id: 1544286081237-6
+    id: 1544287319364-6
     author: vittorio (generated)
     changes:
     - createIndex:
@@ -96,7 +96,7 @@ databaseChangeLog:
         indexName: SYS_IDX_FKIFGQ9QNA2EJ6IQ61I8A6OVTFI_10128
         tableName: ORDERLINE
 - changeSet:
-    id: 1544286081237-7
+    id: 1544287319364-7
     author: vittorio (generated)
     changes:
     - createIndex:
@@ -106,7 +106,7 @@ databaseChangeLog:
         indexName: SYS_IDX_FKPR8T82X1JDGSGY4HAJSJW5OOF_10119
         tableName: ORDERLINE
 - changeSet:
-    id: 1544286081237-8
+    id: 1544287319364-8
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:
@@ -121,7 +121,7 @@ databaseChangeLog:
         referencedTableName: PRODUCT
         validate: true
 - changeSet:
-    id: 1544286081237-9
+    id: 1544287319364-9
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:

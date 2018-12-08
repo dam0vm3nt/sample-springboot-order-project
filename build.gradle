@@ -3,6 +3,7 @@ buildscript {
 		springBootVersion = '2.1.1.RELEASE'
 		dbDriver = 'org.hsqldb.jdbc.JDBCDriver'
 		dbUrl = 'jdbc:hsqldb:file:./build/demo.db'
+		runList = 'schema,data'
 	}
 	repositories {
 		mavenCentral()
@@ -29,20 +30,21 @@ repositories {
 
 liquibase {
   activities {
-    diffMain {
+    schema {
       changeLogFile 'src/main/resources/db/changelog/db.changelog-master.yml'
       url project.ext.dbUrl
 	  driver project.ext.dbDriver
       referenceUrl 'hibernate:spring:it.vb.sample.demo.entities?dialect=org.hibernate.dialect.HSQLDialect'
     }
-	diffData {
+	data {
 	  changeLogFile 'src/main/resources/db/changelog/db.changelog-data.yml'
       url project.ext.dbUrl
 	  driver project.ext.dbDriver
 	  diffTypes 'data'
-	  referenceUrl project.ext.dbUrl
 	}
   }
+
+  runList = project.ext.runList
 }
 
 diff.dependsOn compileJava
