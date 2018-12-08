@@ -1,13 +1,13 @@
 databaseChangeLog:
 - changeSet:
-    id: 1544289297133-1
+    id: 1544304095574-1
     author: vittorio (generated)
     changes:
     - createSequence:
         sequenceName: HIBERNATE_SEQUENCE
-        startValue: 4
+        startValue: 5
 - changeSet:
-    id: 1544289297133-2
+    id: 1544304095574-2
     author: vittorio (generated)
     changes:
     - createTable:
@@ -21,7 +21,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: ORDER
 - changeSet:
-    id: 1544289297133-3
+    id: 1544304095574-3
     author: vittorio (generated)
     changes:
     - createTable:
@@ -51,7 +51,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: ORDERLINE
 - changeSet:
-    id: 1544289297133-4
+    id: 1544304095574-4
     author: vittorio (generated)
     changes:
     - createTable:
@@ -79,7 +79,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: PRODUCT
 - changeSet:
-    id: 1544289297133-5
+    id: 1544304095574-5
     author: vittorio (generated)
     changes:
     - addUniqueConstraint:
@@ -87,7 +87,7 @@ databaseChangeLog:
         constraintName: UKQ1MAFXN973LDQ80M1IRP3MPVQ
         tableName: PRODUCT
 - changeSet:
-    id: 1544289297133-6
+    id: 1544304095574-6
     author: vittorio (generated)
     changes:
     - createIndex:
@@ -97,7 +97,7 @@ databaseChangeLog:
         indexName: SYS_IDX_FKIFGQ9QNA2EJ6IQ61I8A6OVTFI_10128
         tableName: ORDERLINE
 - changeSet:
-    id: 1544289297133-7
+    id: 1544304095574-7
     author: vittorio (generated)
     changes:
     - createIndex:
@@ -107,7 +107,7 @@ databaseChangeLog:
         indexName: SYS_IDX_FKPR8T82X1JDGSGY4HAJSJW5OOF_10119
         tableName: ORDERLINE
 - changeSet:
-    id: 1544289297133-8
+    id: 1544304095574-8
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:
@@ -122,7 +122,7 @@ databaseChangeLog:
         referencedTableName: PRODUCT
         validate: true
 - changeSet:
-    id: 1544289297133-9
+    id: 1544304095574-9
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:

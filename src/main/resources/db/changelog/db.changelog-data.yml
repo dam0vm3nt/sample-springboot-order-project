@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1544289298747-1
+    id: 1544304097114-1
     author: vittorio (generated)
     changes:
     - insert:
@@ -71,6 +71,24 @@ databaseChangeLog:
         - column:
             name: SKU
             value: '1237'
+        - column:
+            name: UM
+            value: piece
+        tableName: PRODUCT
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 4
+        - column:
+            name: DESCRIPTION
+            value: A product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: '1241'
         - column:
             name: UM
             value: piece
