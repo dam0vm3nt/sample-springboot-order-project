@@ -12,6 +12,7 @@ import it.vb.sample.demo.dto.OrderDTO;
 import it.vb.sample.demo.entities.Order;
 import it.vb.sample.demo.entities.OrderLine;
 import it.vb.sample.demo.entities.Product;
+import it.vb.sample.demo.repositories.OrderLineRepository;
 import it.vb.sample.demo.repositories.OrderRepository;
 import it.vb.sample.demo.repositories.ProductRepository;
 
@@ -24,9 +25,13 @@ public class OrderController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private OrderLineRepository orderLineRepository;
+
     @RequestMapping(method = RequestMethod.PUT)
     public Order createOrder(@RequestBody OrderDTO orderDTO) {
         Order order = new Order();
+
         order.setLines(orderDTO.getLines().stream().map((l) -> {
             OrderLine line = new OrderLine();
             Product product = productRepository.findBySku(l.getSku());
@@ -34,7 +39,9 @@ public class OrderController {
             line.setQty(l.getQty());
             line.setPrice(product.getPrice());
             line.setProduct(product);
-            
+
+            orderLineRepository.save(line);
+
             return line;
         }).collect(Collectors.toList()));
         orderRepository.save(order);
