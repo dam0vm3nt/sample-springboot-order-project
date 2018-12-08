@@ -1,8 +1,8 @@
 buildscript {
 	ext {
 		springBootVersion = '2.1.1.RELEASE'
-		dbDriver = 'org.hsqldb.jdbc.JDBCDriver'
-		dbUrl = 'jdbc:hsqldb:file:./build/demo.db'
+		dbDriver = 'org.h2.Driver'
+		dbUrl = 'jdbc:h2:file:./build/demo.db'
 		runList = 'schema,data'
 	}
 	repositories {
@@ -34,7 +34,7 @@ liquibase {
       changeLogFile 'src/main/resources/db/changelog/db.changelog-master.yml'
       url project.ext.dbUrl
 	  driver project.ext.dbDriver
-      referenceUrl 'hibernate:spring:it.vb.sample.demo.entities?dialect=org.hibernate.dialect.HSQLDialect'
+      referenceUrl 'hibernate:spring:it.vb.sample.demo.entities?dialect=org.hibernate.dialect.H2Dialect'
     }
 	data {
 	  changeLogFile 'src/main/resources/db/changelog/db.changelog-data.yml'
@@ -58,8 +58,9 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
 
-	// https://mvnrepository.com/artifact/org.hsqldb/hsqldb
-    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.1'
+	// https://mvnrepository.com/artifact/com.h2database/h2
+	compile group: 'com.h2database', name: 'h2', version: '1.4.197'
+
 
 	// https://mvnrepository.com/artifact/org.liquibase/liquibase-core
     compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.2'
@@ -67,7 +68,7 @@ dependencies {
 	liquibaseRuntime('org.liquibase:liquibase-core:3.6.2')
 	//liquibaseRuntime('org.liquibase:liquibase-groovy-dsl:2.0.1')
 	liquibaseRuntime('org.liquibase.ext:liquibase-hibernate5:3.6')
-	liquibaseRuntime('org.hsqldb:hsqldb:2.4.1')
+	liquibaseRuntime('com.h2database:h2:1.4.197')
 	liquibaseRuntime('org.springframework.boot:spring-boot-starter-data-jpa')
 	liquibaseRuntime sourceSets.main.output
 
