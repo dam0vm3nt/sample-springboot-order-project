@@ -2,6 +2,8 @@ buildscript {
 	ext {
 		springBootVersion = '2.1.1.RELEASE'
 		dbDriver = 'org.h2.Driver'
+		dbUsername = 'sa'
+		dbPassword = ''
 		dbUrl = 'jdbc:h2:file:./build/demo.db'
 		runList = 'schema,data'
 	}
@@ -33,12 +35,16 @@ liquibase {
     schema {
       changeLogFile 'src/main/resources/db/changelog/db.changelog-master.yml'
       url project.ext.dbUrl
+	  username project.ext.dbUsername
+	  password project.ext.dbPassword
 	  driver project.ext.dbDriver
       referenceUrl 'hibernate:spring:it.vb.sample.demo.entities?dialect=org.hibernate.dialect.H2Dialect'
     }
 	data {
 	  changeLogFile 'src/main/resources/db/changelog/db.changelog-data.yml'
       url project.ext.dbUrl
+	  username project.ext.dbUsername
+	  password project.ext.dbPassword
 	  driver project.ext.dbDriver
 	  diffTypes 'data'
 	}
