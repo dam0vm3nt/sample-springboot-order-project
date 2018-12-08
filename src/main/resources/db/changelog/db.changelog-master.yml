@@ -5,6 +5,7 @@ databaseChangeLog:
     changes:
     - createSequence:
         sequenceName: HIBERNATE_SEQUENCE
+        startValue: 4
 - changeSet:
     id: 1544289297133-2
     author: vittorio (generated)
