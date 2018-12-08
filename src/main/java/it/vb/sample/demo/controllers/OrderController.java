@@ -3,6 +3,7 @@ package it.vb.sample.demo.controllers;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,8 +30,9 @@ public class OrderController {
     private OrderLineRepository orderLineRepository;
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Order createOrder(@RequestBody OrderDTO orderDTO) {
+    public Long createOrder(@RequestBody OrderDTO orderDTO) {
         Order order = new Order();
+        orderRepository.save(order);
 
         order.setLines(orderDTO.getLines().stream().map((l) -> {
             OrderLine line = new OrderLine();
@@ -39,13 +41,25 @@ public class OrderController {
             line.setQty(l.getQty());
             line.setPrice(product.getPrice());
             line.setProduct(product);
-
+            line.setOrder(order);
             orderLineRepository.save(line);
 
             return line;
         }).collect(Collectors.toList()));
-        orderRepository.save(order);
+        
 
-        return order;
+        return order.getId();
     }
+
+    @RequestMapping(path="{id}/update",method = RequestMethod.GET)
+    public void updatePrices(@PathVariable("id") long id) {
+        Order order = orderRepository.findById(id).get();
+        order.getLines().forEach(l -> {
+            l.setPrice(l.getProduct().getPrice());
+        });
+    }
+
+
+
+
 }

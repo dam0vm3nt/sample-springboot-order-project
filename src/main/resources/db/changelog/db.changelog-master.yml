@@ -1,36 +1,34 @@
 databaseChangeLog:
 - changeSet:
-    id: 1544304095574-1
+    id: 1544309712548-1
     author: vittorio (generated)
     changes:
     - createSequence:
         sequenceName: HIBERNATE_SEQUENCE
-        startValue: 5
+        startValue: 6
 - changeSet:
-    id: 1544304095574-2
+    id: 1544309712548-2
     author: vittorio (generated)
     changes:
     - createTable:
         columns:
         - column:
-            autoIncrement: true
             constraints:
               primaryKey: true
-              primaryKeyName: ORDERPK
+              primaryKeyName: CONSTRAINT_2
             name: ID
             type: BIGINT
-        tableName: ORDER
+        tableName: T_ORDER
 - changeSet:
-    id: 1544304095574-3
+    id: 1544309712548-3
     author: vittorio (generated)
     changes:
     - createTable:
         columns:
         - column:
-            autoIncrement: true
             constraints:
               primaryKey: true
-              primaryKeyName: ORDERLINEPK
+              primaryKeyName: CONSTRAINT_1
             name: ID
             type: BIGINT
         - column:
@@ -49,18 +47,17 @@ databaseChangeLog:
         - column:
             name: PRODUCT_ID
             type: BIGINT
-        tableName: ORDERLINE
+        tableName: T_ORDER_LINE
 - changeSet:
-    id: 1544304095574-4
+    id: 1544309712548-4
     author: vittorio (generated)
     changes:
     - createTable:
         columns:
         - column:
-            autoIncrement: true
             constraints:
               primaryKey: true
-              primaryKeyName: PRODUCTPK
+              primaryKeyName: CONSTRAINT_4
             name: ID
             type: BIGINT
         - column:
@@ -72,68 +69,70 @@ databaseChangeLog:
             name: PRICE
             type: DOUBLE(17)
         - column:
+            constraints:
+              nullable: false
             name: SKU
             type: VARCHAR(255)
         - column:
             name: UM
             type: VARCHAR(255)
-        tableName: PRODUCT
+        tableName: T_PRODUCT
 - changeSet:
-    id: 1544304095574-5
+    id: 1544309712548-5
     author: vittorio (generated)
     changes:
     - addUniqueConstraint:
         columnNames: SKU
-        constraintName: UKQ1MAFXN973LDQ80M1IRP3MPVQ
-        tableName: PRODUCT
+        constraintName: UKKDRHSXD4XYN3HFPI37BY79OMO
+        tableName: T_PRODUCT
 - changeSet:
-    id: 1544304095574-6
-    author: vittorio (generated)
-    changes:
-    - createIndex:
-        columns:
-        - column:
-            name: PRODUCT_ID
-        indexName: SYS_IDX_FKIFGQ9QNA2EJ6IQ61I8A6OVTFI_10128
-        tableName: ORDERLINE
-- changeSet:
-    id: 1544304095574-7
+    id: 1544309712548-6
     author: vittorio (generated)
     changes:
     - createIndex:
         columns:
         - column:
             name: ORDER_ID
-        indexName: SYS_IDX_FKPR8T82X1JDGSGY4HAJSJW5OOF_10119
-        tableName: ORDERLINE
+        indexName: FK2E6O2GVDQRTDJICXVUSPBW3IX_INDEX_1
+        tableName: T_ORDER_LINE
 - changeSet:
-    id: 1544304095574-8
+    id: 1544309712548-7
     author: vittorio (generated)
     changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: PRODUCT_ID
-        baseTableName: ORDERLINE
-        constraintName: FKIFGQ9QNA2EJ6IQ61I8A6OVTFI
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: RESTRICT
-        onUpdate: RESTRICT
-        referencedColumnNames: ID
-        referencedTableName: PRODUCT
-        validate: true
+    - createIndex:
+        columns:
+        - column:
+            name: PRODUCT_ID
+        indexName: FKF6SM3DRFXOFEE294Q3CHE9HDI_INDEX_1
+        tableName: T_ORDER_LINE
 - changeSet:
-    id: 1544304095574-9
+    id: 1544309712548-8
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: ORDER_ID
-        baseTableName: ORDERLINE
-        constraintName: FKPR8T82X1JDGSGY4HAJSJW5OOF
+        baseTableName: T_ORDER_LINE
+        constraintName: FK2E6O2GVDQRTDJICXVUSPBW3IX
         deferrable: false
         initiallyDeferred: false
         onDelete: RESTRICT
         onUpdate: RESTRICT
         referencedColumnNames: ID
-        referencedTableName: ORDER
+        referencedTableName: T_ORDER
+        validate: true
+- changeSet:
+    id: 1544309712548-9
+    author: vittorio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: PRODUCT_ID
+        baseTableName: T_ORDER_LINE
+        constraintName: FKF6SM3DRFXOFEE294Q3CHE9HDI
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: T_PRODUCT
         validate: true
 
