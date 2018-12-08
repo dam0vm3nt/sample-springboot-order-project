@@ -11,6 +11,6 @@ import it.vb.sample.demo.entities.Product;
 @RepositoryRestResource(collectionResourceRel = "products", path = "products")
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-	List<Product> findBySku(@Param("sku") String sku);
+	Product findBySku(@Param("sku") String sku);
 
 }
