@@ -67,9 +67,17 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.h2database/h2
 	compile group: 'com.h2database', name: 'h2', version: '1.4.197'
 
-
 	// https://mvnrepository.com/artifact/org.liquibase/liquibase-core
     compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.2'
+
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	compile('io.springfox:springfox-data-rest:2.9.2')
+
 
 	liquibaseRuntime('org.liquibase:liquibase-core:3.6.2')
 	//liquibaseRuntime('org.liquibase:liquibase-groovy-dsl:2.0.1')
