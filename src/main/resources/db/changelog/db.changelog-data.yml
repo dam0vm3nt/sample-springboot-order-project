@@ -1,2 +1,60 @@
-databaseChangeLog: []
+databaseChangeLog:
+- changeSet:
+    id: 1544286079280-1
+    author: vittorio (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 0
+        - column:
+            name: DESCRIPTION
+            value: A product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: '1234'
+        - column:
+            name: UM
+            value: piece
+        tableName: PRODUCT
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 1
+        - column:
+            name: DESCRIPTION
+            value: A product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: '1235'
+        - column:
+            name: UM
+            value: piece
+        tableName: PRODUCT
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 2
+        - column:
+            name: DESCRIPTION
+            value: A product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: '1236'
+        - column:
+            name: UM
+            value: piece
+        tableName: PRODUCT
 

@@ -1,6 +1,8 @@
 buildscript {
 	ext {
 		springBootVersion = '2.1.1.RELEASE'
+		dbDriver = 'org.hsqldb.jdbc.JDBCDriver'
+		dbUrl = 'jdbc:hsqldb:file:./build/demo.db'
 	}
 	repositories {
 		mavenCentral()
@@ -29,16 +31,16 @@ liquibase {
   activities {
     diffMain {
       changeLogFile 'src/main/resources/db/changelog/db.changelog-master.yml'
-      url 'jdbc:hsqldb:file:./build/demo.db'
-	  driver 'org.hsqldb.jdbc.JDBCDriver'
+      url project.ext.dbUrl
+	  driver project.ext.dbDriver
       referenceUrl 'hibernate:spring:it.vb.sample.demo.entities?dialect=org.hibernate.dialect.HSQLDialect'
     }
 	diffData {
 	  changeLogFile 'src/main/resources/db/changelog/db.changelog-data.yml'
-      url 'jdbc:hsqldb:file:./build/demo.db'
-	  driver 'org.hsqldb.jdbc.JDBCDriver'
+      url project.ext.dbUrl
+	  driver project.ext.dbDriver
 	  diffTypes 'data'
-	  referenceUrl 'jdbc:hsqldb:file:./build/demo.db'
+	  referenceUrl project.ext.dbUrl
 	}
   }
 }
@@ -65,6 +67,6 @@ dependencies {
 	liquibaseRuntime('org.liquibase.ext:liquibase-hibernate5:3.6')
 	liquibaseRuntime('org.hsqldb:hsqldb:2.4.1')
 	liquibaseRuntime('org.springframework.boot:spring-boot-starter-data-jpa')
-	liquibaseRuntime sourceSets.main.output // replaces liquibaseRuntime files('src/main')
+	liquibaseRuntime sourceSets.main.output
 
 }

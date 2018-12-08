@@ -1,24 +1,12 @@
 databaseChangeLog:
 - changeSet:
-    id: 1544285062532-1
+    id: 1544286081237-1
     author: vittorio (generated)
     changes:
-    - dropUniqueConstraint:
-        constraintName: UKq1mafxn973ldq80m1irp3mpvq
-        tableName: product
-    - addUniqueConstraint:
-        columnNames: sku
-        constraintName: UKq1mafxn973ldq80m1irp3mpvq
-        tableName: product
-
-     constraints:
-              primaryKey: true
-              primaryKeyName: OrderPK
-            name: id
-            type: BIGINT
-        tableName: Order
+    - createSequence:
+        sequenceName: HIBERNATE_SEQUENCE
 - changeSet:
-    id: 1544284798835-3
+    id: 1544286081237-2
     author: vittorio (generated)
     changes:
     - createTable:
@@ -27,28 +15,12 @@ databaseChangeLog:
             autoIncrement: true
             constraints:
               primaryKey: true
-              primaryKeyName: OrderLinePK
-            name: id
+              primaryKeyName: ORDERPK
+            name: ID
             type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-            name: price
-            type: DOUBLE
-        - column:
-            constraints:
-              nullable: false
-            name: qty
-            type: DOUBLE
-        - column:
-            name: order_id
-            type: BIGINT
-        - column:
-            name: product_id
-            type: BIGINT
-        tableName: OrderLine
+        tableName: ORDER
 - changeSet:
-    id: 1544284798835-4
+    id: 1544286081237-3
     author: vittorio (generated)
     changes:
     - createTable:
@@ -57,56 +29,110 @@ databaseChangeLog:
             autoIncrement: true
             constraints:
               primaryKey: true
-              primaryKeyName: productPK
-            name: id
+              primaryKeyName: ORDERLINEPK
+            name: ID
             type: BIGINT
         - column:
-            name: description
+            constraints:
+              nullable: false
+            name: PRICE
+            type: DOUBLE
+        - column:
+            constraints:
+              nullable: false
+            name: QTY
+            type: DOUBLE
+        - column:
+            name: ORDER_ID
+            type: BIGINT
+        - column:
+            name: PRODUCT_ID
+            type: BIGINT
+        tableName: ORDERLINE
+- changeSet:
+    id: 1544286081237-4
+    author: vittorio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: PRODUCTPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: DESCRIPTION
             type: VARCHAR(255)
         - column:
             constraints:
               nullable: false
-            name: price
+            name: PRICE
             type: DOUBLE
         - column:
-            name: sku
+            name: SKU
             type: VARCHAR(255)
         - column:
-            name: um
+            name: UM
             type: VARCHAR(255)
-        tableName: product
+        tableName: PRODUCT
 - changeSet:
-    id: 1544284798835-5
+    id: 1544286081237-5
     author: vittorio (generated)
     changes:
     - addUniqueConstraint:
-        columnNames: sku
-        constraintName: UKq1mafxn973ldq80m1irp3mpvq
-        tableName: product
+        columnNames: SKU
+        constraintName: UKQ1MAFXN973LDQ80M1IRP3MPVQ
+        tableName: PRODUCT
 - changeSet:
-    id: 1544284798835-6
+    id: 1544286081237-6
+    author: vittorio (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: PRODUCT_ID
+        indexName: SYS_IDX_FKIFGQ9QNA2EJ6IQ61I8A6OVTFI_10128
+        tableName: ORDERLINE
+- changeSet:
+    id: 1544286081237-7
+    author: vittorio (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: ORDER_ID
+        indexName: SYS_IDX_FKPR8T82X1JDGSGY4HAJSJW5OOF_10119
+        tableName: ORDERLINE
+- changeSet:
+    id: 1544286081237-8
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: product_id
-        baseTableName: OrderLine
-        constraintName: FKifgq9qna2ej6iq61i8a6ovtfi
+        baseColumnNames: PRODUCT_ID
+        baseTableName: ORDERLINE
+        constraintName: FKIFGQ9QNA2EJ6IQ61I8A6OVTFI
         deferrable: false
         initiallyDeferred: false
-        referencedColumnNames: id
-        referencedTableName: product
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: ID
+        referencedTableName: PRODUCT
         validate: true
 - changeSet:
-    id: 1544284798835-7
+    id: 1544286081237-9
     author: vittorio (generated)
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: order_id
-        baseTableName: OrderLine
-        constraintName: FKpr8t82x1jdgsgy4hajsjw5oof
+        baseColumnNames: ORDER_ID
+        baseTableName: ORDERLINE
+        constraintName: FKPR8T82X1JDGSGY4HAJSJW5OOF
         deferrable: false
         initiallyDeferred: false
-        referencedColumnNames: id
-        referencedTableName: Order
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: ID
+        referencedTableName: ORDER
         validate: true
 
