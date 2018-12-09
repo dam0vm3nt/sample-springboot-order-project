@@ -9,15 +9,15 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "T_PRODUCT", uniqueConstraints = @UniqueConstraint(columnNames = { "sku" }))
+@Table(name = "T_PRODUCT", uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable=false)
-    private String sku;
+    @Column(nullable = false)
+    private String name;
     private String description;
     private String um;
     private double price;
@@ -34,17 +34,17 @@ public class Product {
     }
 
     /**
-     * @return the sku
+     * @return the name
      */
-    public String getSku() {
-        return sku;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param sku the sku to set
+     * @param name the name to set
      */
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

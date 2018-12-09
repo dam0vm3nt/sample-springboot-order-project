@@ -44,7 +44,7 @@ public class ProductController {
     @Transactional
     public Product updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Product toUpdate = productRepository.findById(id).get();
-        toUpdate.setSku(product.getSku());
+        toUpdate.setName(product.getName());
         toUpdate.setDescription(product.getDescription());
         toUpdate.setPrice(product.getPrice());
         toUpdate.setUm(product.getUm());

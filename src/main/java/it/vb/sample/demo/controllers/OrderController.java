@@ -43,7 +43,7 @@ public class OrderController {
 
         order.setLines(orderDTO.getLines().stream().map((l) -> {
             OrderLine line = new OrderLine();
-            Product product = productRepository.findBySku(l.getSku());
+            Product product = productRepository.findByName(l.getProductName());
 
             line.setQty(l.getQty());
             line.setPrice(product.getPrice());
@@ -70,7 +70,7 @@ public class OrderController {
             dto.setLines(o.getLines().stream().map((l) -> {
                 OrderLineDTO ldto = new OrderLineDTO();
                 ldto.setQty(l.getQty());
-                ldto.setSku(l.getProduct().getSku());
+                ldto.setProductName(l.getProduct().getName());
                 return ldto;
             }).collect(Collectors.toList()));
             // This is not optimized (better store the total when the order is created)

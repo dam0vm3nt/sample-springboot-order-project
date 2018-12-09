@@ -15,7 +15,7 @@ databaseChangeLog:
             name: PRICE
             valueNumeric: 100.0
         - column:
-            name: SKU
+            name: NAME
             value: AAA0001
         - column:
             name: UM
@@ -33,7 +33,7 @@ databaseChangeLog:
             name: PRICE
             valueNumeric: 100.0
         - column:
-            name: SKU
+            name: NAME
             value: AAA0002
         - column:
             name: UM
@@ -51,7 +51,7 @@ databaseChangeLog:
             name: PRICE
             valueNumeric: 100.0
         - column:
-            name: SKU
+            name: NAME
             value: AAA0003
         - column:
             name: UM

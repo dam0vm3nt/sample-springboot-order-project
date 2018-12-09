@@ -56,7 +56,7 @@ public class ProductControllerTests {
         prod2 = productController.updateProduct(prod.getId(), prod2);
 
         assertThat(prod2.getId(), Matchers.equalTo(prod.getId()));
-        assertThat(prod2.getSku(), Matchers.equalTo("X004"));
+        assertThat(prod2.getName(), Matchers.equalTo("X004"));
     }
 
     @Test
@@ -75,12 +75,12 @@ public class ProductControllerTests {
     @Transactional
     public void canGetOneProduct() {
         Product prod = productController.getProduct(1);        
-        assertThat(prod.getSku(), Matchers.is("AAA0001"));
+        assertThat(prod.getName(), Matchers.is("AAA0001"));
     }
 
     private Product newProduct(String sku, String um, double price, String description) {
         Product prod = new Product();
-        prod.setSku(sku);
+        prod.setName(sku);
         prod.setUm(um);
         prod.setPrice(price);
         prod.setDescription(description);

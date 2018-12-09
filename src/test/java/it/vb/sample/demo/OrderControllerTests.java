@@ -73,7 +73,7 @@ public class OrderControllerTests {
         long id = createAnOrder();
         Order order = orderRepository.findById(id).get();
         double total = order.computeTotal();
-        Product prod = productRepository.findBySku("AAA0001");
+        Product prod = productRepository.findByName("AAA0001");
         assertThat(total,Matchers.is(10*prod.getPrice()));
 
         prod.setPrice(prod.getPrice()+10);
@@ -90,7 +90,7 @@ public class OrderControllerTests {
         order.setDate(cal.getTime());
         order.setBuyerEmail("a@b.it");
         OrderLineDTO line1 = new OrderLineDTO();
-        line1.setSku("AAA0001");
+        line1.setProductName("AAA0001");
         line1.setQty(10.0);
         order.setLines(Arrays.asList(line1));
         long id = orderController.createOrder(order);

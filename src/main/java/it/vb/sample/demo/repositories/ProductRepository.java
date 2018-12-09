@@ -9,6 +9,6 @@ import it.vb.sample.demo.entities.Product;
 @RepositoryRestResource
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-	Product findBySku(@Param("sku") String sku);
+	Product findByName(@Param("name") String name);
 
 }

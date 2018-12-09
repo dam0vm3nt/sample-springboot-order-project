@@ -77,7 +77,7 @@ databaseChangeLog:
         - column:
             constraints:
               nullable: false
-            name: SKU
+            name: NAME
             type: VARCHAR(255)
         - column:
             name: UM
@@ -88,7 +88,7 @@ databaseChangeLog:
     author: vittorio (generated)
     changes:
     - addUniqueConstraint:
-        columnNames: SKU
+        columnNames: NAME
         constraintName: UKKDRHSXD4XYN3HFPI37BY79OMO
         tableName: T_PRODUCT
 - changeSet:

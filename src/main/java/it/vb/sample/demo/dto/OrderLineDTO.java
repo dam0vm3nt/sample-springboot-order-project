@@ -1,14 +1,14 @@
 package it.vb.sample.demo.dto;
 
 public class OrderLineDTO {
-    private String sku;
+    private String productName;
     private double qty;
 
     /**
-     * @return the sku
+     * @return the productName
      */
-    public String getSku() {
-        return sku;
+    public String getProductName() {
+        return productName;
     }
 
     /**
@@ -26,9 +26,9 @@ public class OrderLineDTO {
     }
 
     /**
-     * @param sku the sku to set
+     * @param productName the productName to set
      */
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }
