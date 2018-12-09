@@ -55,14 +55,6 @@ public class OrderController {
         return order.getId();
     }
 
-    @RequestMapping(path = "{id}/update", method = RequestMethod.GET)
-    public void updatePrices(@PathVariable("id") long id) {
-        Order order = orderRepository.findById(id).get();
-        order.getLines().forEach(l -> {
-            l.setPrice(l.getProduct().getPrice());
-        });
-    }
-
     @RequestMapping(method = RequestMethod.POST)
     public List<OrderDTO> findOrdersInRange(@RequestBody FindOrderCriteriaDTO criteria) {
         List<Order> orders = orderRepository.findByDateBetween(criteria.getDateFrom(), criteria.getDateTo());
