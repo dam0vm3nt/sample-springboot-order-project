@@ -2,16 +2,11 @@ package it.vb.sample.demo;
 
 import static org.junit.Assert.assertThat;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
 import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsCollectionWithSize;
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.vb.sample.demo.controllers.OrderController;
 import it.vb.sample.demo.controllers.ProductController;
-import it.vb.sample.demo.dto.FindOrderCriteriaDTO;
-import it.vb.sample.demo.dto.OrderDTO;
-import it.vb.sample.demo.dto.OrderLineDTO;
 import it.vb.sample.demo.entities.Product;
-import it.vb.sample.demo.repositories.OrderRepository;
 import it.vb.sample.demo.repositories.ProductRepository;
 
 @RunWith(SpringRunner.class)

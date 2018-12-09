@@ -8,12 +8,27 @@ public class OrderDTO {
     private String buyerEmail;
     private Date date;
     private List<OrderLineDTO> lines;
+    private Double total;
 
     /**
      * @return the lines
      */
     public List<OrderLineDTO> getLines() {
         return lines;
+    }
+
+    /**
+     * @return the total
+     */
+    public Double getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     /**

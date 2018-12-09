@@ -20,7 +20,10 @@ import it.vb.sample.demo.controllers.OrderController;
 import it.vb.sample.demo.dto.FindOrderCriteriaDTO;
 import it.vb.sample.demo.dto.OrderDTO;
 import it.vb.sample.demo.dto.OrderLineDTO;
+import it.vb.sample.demo.entities.Order;
+import it.vb.sample.demo.entities.Product;
 import it.vb.sample.demo.repositories.OrderRepository;
+import it.vb.sample.demo.repositories.ProductRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,6 +34,9 @@ public class OrderControllerTests {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Test
     @Transactional
@@ -60,6 +66,22 @@ public class OrderControllerTests {
 
         orderRepository.deleteById(id);
     }
+
+    @Test
+    @Transactional
+    public void totalWillNotChangeIfPriceChanges() {
+        long id = createAnOrder();
+        Order order = orderRepository.findById(id).get();
+        double total = order.computeTotal();
+        Product prod = productRepository.findBySku("AAA0001");
+        assertThat(total,Matchers.is(10*prod.getPrice()));
+
+        prod.setPrice(prod.getPrice()+10);
+
+        double total2 = order.computeTotal();
+        assertThat(total2,Matchers.is(total));
+        assertThat(total2,Matchers.lessThan(10*prod.getPrice()));
+    } 
 
     private long createAnOrder() {
         OrderDTO order = new OrderDTO();

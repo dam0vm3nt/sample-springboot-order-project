@@ -73,6 +73,10 @@ public class OrderController {
                 ldto.setSku(l.getProduct().getSku());
                 return ldto;
             }).collect(Collectors.toList()));
+            // This is not optimized (better store the total when the order is created)
+            // But in this way we may show that changing the product the total will not change
+            // even if it's computed every time
+            dto.setTotal(o.computeTotal());
             return dto;
         }).collect(Collectors.toList());
     }

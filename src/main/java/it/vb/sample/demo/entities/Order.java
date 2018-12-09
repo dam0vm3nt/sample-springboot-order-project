@@ -2,6 +2,7 @@ package it.vb.sample.demo.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,5 +65,13 @@ public class Order {
 
     public void setLines(List<OrderLine> lines) {
         this.lines = lines;
+    }
+
+    /**
+     * NOTE: Not optimized, just for this sample
+     * @return
+     */
+    public double computeTotal() {
+        return lines.stream().collect(Collectors.summarizingDouble(l -> l.getPrice() * l.getQty())).getSum();
     }
 }
