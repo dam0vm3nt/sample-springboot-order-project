@@ -37,8 +37,13 @@ public class ProductController {
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.POST)
-    public Product updateProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    public Product updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+        Product toUpdate = productRepository.findById(id).get();
+        toUpdate.setSku(product.getSku());
+        toUpdate.setDescription(product.getDescription());
+        toUpdate.setPrice(product.getPrice());
+        toUpdate.setUm(product.getUm());
+        return toUpdate;
     }
 
     @RequestMapping(method = RequestMethod.GET)

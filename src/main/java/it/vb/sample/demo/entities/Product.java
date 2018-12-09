@@ -22,6 +22,10 @@ public class Product {
     private String um;
     private double price;
 
+    public long getId() {
+        return id;
+    }
+
     /**
      * @return the um
      */
