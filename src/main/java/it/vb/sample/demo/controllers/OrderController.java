@@ -3,8 +3,9 @@ package it.vb.sample.demo.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,7 @@ public class OrderController {
     private OrderLineRepository orderLineRepository;
 
     @RequestMapping(method = RequestMethod.PUT)
+    @Transactional
     public Long createOrder(@RequestBody OrderDTO orderDTO) {
         Order order = new Order();
         order.setBuyerEmail(orderDTO.getBuyerEmail());
@@ -56,6 +58,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @Transactional
     public List<OrderDTO> findOrdersInRange(@RequestBody FindOrderCriteriaDTO criteria) {
         List<Order> orders = orderRepository.findByDateBetween(criteria.getDateFrom(), criteria.getDateTo());
 

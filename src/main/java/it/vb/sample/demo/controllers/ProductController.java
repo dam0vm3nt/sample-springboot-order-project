@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,22 +22,26 @@ public class ProductController {
     ProductRepository productRepository;
 
     @RequestMapping(method = RequestMethod.PUT)
+    @Transactional
     public Product createProduct(@RequestBody Product newProduct) {
         productRepository.save(newProduct);
         return newProduct;
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
+    @Transactional
     public void deleteProduct(@PathVariable("id") long id) {
         productRepository.deleteById(id);
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
+    @Transactional
     public Product getProduct(@PathVariable("id") long id) {
         return productRepository.findById(id).get();
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.POST)
+    @Transactional
     public Product updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Product toUpdate = productRepository.findById(id).get();
         toUpdate.setSku(product.getSku());
@@ -47,6 +52,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @Transactional
     public List<Product> getProducts() {
         return StreamSupport.stream(productRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }

@@ -81,6 +81,13 @@ public class ProductControllerTests {
         assertThat(op.isPresent(), Matchers.is(true));
     }
 
+    @Test
+    @Transactional
+    public void canGetOneProduct() {
+        Product prod = productController.getProduct(1);        
+        assertThat(prod.getSku(), Matchers.is("AAA0001"));
+    }
+
     private Product newProduct(String sku, String um, double price, String description) {
         Product prod = new Product();
         prod.setSku(sku);
