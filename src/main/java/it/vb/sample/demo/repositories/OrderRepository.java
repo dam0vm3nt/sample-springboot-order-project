@@ -1,6 +1,6 @@
 package it.vb.sample.demo.repositories;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,5 +10,5 @@ import it.vb.sample.demo.entities.Order;
 
 @RepositoryRestResource
 public interface OrderRepository extends CrudRepository<Order, Long> {
-	List<Order> findByDateBetween(Instant from, Instant to);
+	List<Order> findByDateBetween(Date from, Date to);
 }

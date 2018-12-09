@@ -1,6 +1,5 @@
 package it.vb.sample.demo.controllers;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,16 +65,14 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.POST)
     public List<OrderDTO> findOrdersInRange(@RequestBody FindOrderCriteriaDTO criteria) {
-        Instant from = Instant.MIN;
-        Instant to = Instant.MAX;
-        List<Order> orders = orderRepository.findByDateBetween(from, to);
+        List<Order> orders = orderRepository.findByDateBetween(criteria.getDateFrom(), criteria.getDateTo());
 
-        return orders.stream().map((o)-> {
+        return orders.stream().map((o) -> {
             OrderDTO dto = new OrderDTO();
             dto.setId(o.getId());
             dto.setBuyerEmail(o.getBuyerEmail());
             dto.setDate(o.getDate());
-            dto.setLines(o.getLines().stream().map((l)-> {
+            dto.setLines(o.getLines().stream().map((l) -> {
                 OrderLineDTO ldto = new OrderLineDTO();
                 ldto.setQty(l.getQty());
                 ldto.setSku(l.getProduct().getSku());
