@@ -1,2 +1,60 @@
-databaseChangeLog: []
+databaseChangeLog:
+- changeSet:
+    id: 1544375573728-1
+    author: vittorio (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 1
+        - column:
+            name: DESCRIPTION
+            value: Gold product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: AAA0001
+        - column:
+            name: UM
+            value: piece
+        tableName: T_PRODUCT
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 2
+        - column:
+            name: DESCRIPTION
+            value: Silver product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: AAA0002
+        - column:
+            name: UM
+            value: piece
+        tableName: T_PRODUCT
+    - insert:
+        columns:
+        - column:
+            name: ID
+            valueNumeric: 3
+        - column:
+            name: DESCRIPTION
+            value: Bronze product
+        - column:
+            name: PRICE
+            valueNumeric: 100.0
+        - column:
+            name: SKU
+            value: AAA0003
+        - column:
+            name: UM
+            value: piece
+        tableName: T_PRODUCT
 
