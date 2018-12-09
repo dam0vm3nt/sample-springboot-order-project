@@ -1,5 +1,7 @@
 package it.vb.sample.demo.controllers;
 
+import java.time.Instant;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.vb.sample.demo.dto.FindOrderCriteriaDTO;
 import it.vb.sample.demo.dto.OrderDTO;
+import it.vb.sample.demo.dto.OrderLineDTO;
 import it.vb.sample.demo.entities.Order;
 import it.vb.sample.demo.entities.OrderLine;
 import it.vb.sample.demo.entities.Product;
@@ -32,6 +36,8 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.PUT)
     public Long createOrder(@RequestBody OrderDTO orderDTO) {
         Order order = new Order();
+        order.setBuyerEmail(orderDTO.getBuyerEmail());
+        order.setDate(orderDTO.getDate());
         orderRepository.save(order);
 
         order.setLines(orderDTO.getLines().stream().map((l) -> {
@@ -46,12 +52,11 @@ public class OrderController {
 
             return line;
         }).collect(Collectors.toList()));
-        
 
         return order.getId();
     }
 
-    @RequestMapping(path="{id}/update",method = RequestMethod.GET)
+    @RequestMapping(path = "{id}/update", method = RequestMethod.GET)
     public void updatePrices(@PathVariable("id") long id) {
         Order order = orderRepository.findById(id).get();
         order.getLines().forEach(l -> {
@@ -59,7 +64,25 @@ public class OrderController {
         });
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public List<OrderDTO> findOrdersInRange(@RequestBody FindOrderCriteriaDTO criteria) {
+        Instant from = Instant.MIN;
+        Instant to = Instant.MAX;
+        List<Order> orders = orderRepository.findByDateBetween(from, to);
 
-
+        return orders.stream().map((o)-> {
+            OrderDTO dto = new OrderDTO();
+            dto.setId(o.getId());
+            dto.setBuyerEmail(o.getBuyerEmail());
+            dto.setDate(o.getDate());
+            dto.setLines(o.getLines().stream().map((l)-> {
+                OrderLineDTO ldto = new OrderLineDTO();
+                ldto.setQty(l.getQty());
+                ldto.setSku(l.getProduct().getSku());
+                return ldto;
+            }).collect(Collectors.toList()));
+            return dto;
+        }).collect(Collectors.toList());
+    }
 
 }

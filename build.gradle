@@ -4,7 +4,7 @@ buildscript {
 		dbDriver = 'org.h2.Driver'
 		dbUsername = 'sa'
 		dbPassword = ''
-		dbUrl = 'jdbc:h2:file:./build/demo.db'
+		dbUrl = 'jdbc:h2:file:./build/orders'
 		runList = 'schema,data'
 	}
 	repositories {

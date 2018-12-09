@@ -1,25 +1,2 @@
-databaseChangeLog:
-- changeSet:
-    id: 1544309714107-3
-    author: vittorio (generated)
-    changes:
-    - insert:
-        columns:
-        - column:
-            name: ID
-            valueNumeric: 1
-        - column:
-            name: DESCRIPTION
-            value: A product
-        - column:
-            name: PRICE
-            valueNumeric: 100.0
-        - column:
-            name: SKU
-            value: '1241'
-        - column:
-            name: UM
-            value: piece
-        tableName: T_PRODUCT
-
+databaseChangeLog: []
 
