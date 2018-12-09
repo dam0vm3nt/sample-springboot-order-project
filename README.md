@@ -12,7 +12,7 @@ Test coverage reports can be found in :
 
 Test execution reports can be found in : 
 
-   ./build/reports/tests/test/index.html
+    ./build/reports/tests/test/index.html
 
 
 
