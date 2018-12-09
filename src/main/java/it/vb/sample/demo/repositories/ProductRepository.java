@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import it.vb.sample.demo.entities.Product;
 
-@RepositoryRestResource(collectionResourceRel = "products", path = "products")
+@RepositoryRestResource
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
 	Product findBySku(@Param("sku") String sku);
